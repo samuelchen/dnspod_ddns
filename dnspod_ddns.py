@@ -90,11 +90,12 @@ class App(object):
         while True:
             try:
                 current_ip = get_ip()
+                logger.debug('Got current IP: %s' % current_ip)
             except socket.error, e:
                 logger.error('Get current IP error: %s', e)
             else:
                 if current_ip != last_ip:
-                    logger.info('IP change from %s to %s, update DNS record',
+                    logger.info('IP change from %s to %s, updating DNS record',
                                 last_ip, current_ip)
                     rapi.ddns(record.domain_id, record.id, record.sub_domain,
                               record.record_line, current_ip)
