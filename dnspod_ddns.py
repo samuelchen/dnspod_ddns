@@ -69,7 +69,7 @@ class App(object):
         handler.setFormatter(formatter)
         logger.addHandler(handler)
 
-        bapi = BaseAPI(config.LOGIN_EMAIL, config.LOGIN_PASSWORD)
+        bapi = BaseAPI(login_token=config.LOGIN_TOKEN)
         dapi = DomainAPI(bapi)
         rapi = RecordAPI(bapi)
         domain = dapi.info(domain=config.DOMAIN)
