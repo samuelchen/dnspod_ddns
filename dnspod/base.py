@@ -29,7 +29,7 @@ class BaseAPI(object):
 
     def do_post(self, interface, **params):
         common_param = {
-            'login_toke': self.login_token,
+            'login_token': self.login_token,
             'format': self.format,
             'lang': self.lang,
         }
