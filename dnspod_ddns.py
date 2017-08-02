@@ -52,7 +52,6 @@ class App(object):
         self.stderr_path = os.devnull
         self.pidfile_path = args['-p']
         self.pidfile_timeout = 3
-        self.interval = int(self._args['-t'])
 
         self._args = args
 
@@ -86,6 +85,7 @@ class App(object):
                          config.SUB_DOMAIN, config.DOMAIN)
             return
 
+        interval = int(self._args['-t'])
         last_ip = record.value
         while True:
             try:
@@ -100,8 +100,8 @@ class App(object):
                               record.record_line, current_ip)
                     last_ip = current_ip
                 else:
-                    logger.info('IP not change, check after %d seconds', self.interval)
-            time.sleep(self.interval)
+                    logger.info('IP not change, check after %d seconds', interval)
+            time.sleep(interval)
 
 def get_ip():
     sock = socket.create_connection(('ns1.dnspod.net', 6666), timeout=30)
@@ -130,3 +130,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+

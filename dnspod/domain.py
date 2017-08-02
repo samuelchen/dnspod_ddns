@@ -37,4 +37,5 @@ class DomainAPI(object):
         else:
             # TODO throw exception
             pass
+        print(r)
         return Domain(r['domain'])
